@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fathom to Linear</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="shared/utils.js"></script>
+    <script src="popup.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="icon48.png" alt="Fathom to Linear" class="logo">
+            <h2>Send to Linear</h2>
+        </div>
+
+        <div id="instructions-container" class="instructions-container">
+            <p>This extension can extract content from Gmail emails:</p>
+            <ul>
+                <li><strong>Fathom Meetings:</strong> Automatically extracts action items and next steps</li>
+                <li><strong>Manual Selection:</strong> Select text in the email before clicking the extension icon</li>
+            </ul>
+        </div>
+
+        <label for="issue-title">Issue Title:</label>
+        <input type="text" id="issue-title" placeholder="Enter issue title">
+
+        <label for="team">Team:</label>
+        <select id="team">
+            <option value="" selected>Loading teams...</option>
+        </select>
+
+        <label for="priority">Priority:</label>
+        <select id="priority">
+            <option value="urgent">Urgent</option>
+            <option value="high" selected>High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+
+        <label for="assignee">Assignee:</label>
+        <input type="text" id="assignee" placeholder="e.g., John Doe or John">
+
+        <div class="formatting-controls">
+            <button type="button" class="format-btn" data-format="bold" title="Bold">B</button>
+            <button type="button" class="format-btn" data-format="italic" title="Italic"><i>I</i></button>
+            <button type="button" class="format-btn" data-format="underline" title="Underline"><u>U</u></button>
+        </div>
+
+        <label for="actions">Email Content:</label>
+        <div contenteditable="true" id="actions" class="rich-text"></div>
+        
+        <div id="content-source-info" class="content-source-info">
+            <!-- Will be populated with source information -->
+        </div>
+
+        <div class="button-group">
+            <button id="undo">Clear</button>
+            <button id="refresh-content">Refresh Content</button>
+            <button id="sendToLinear">Send to Linear</button>
+        </div>
+
+        <div id="status" class="status-message"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Fathom to Linear",
+  "version": "1.0",
+  "description": "Extracts Fathom meeting summaries from Gmail and sends them to Linear.",
+  "permissions": [
+    "activeTab", 
+    "storage", 
+    "scripting", 
+    "identity",
+    "tabs",
+    "webNavigation",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://api.linear.app/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["shared/utils.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icon128.png", "icon48.png", "icon16.png", "icon48.png", "shared/utils.js"],
+      "matches": ["https://mail.google.com/*"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
